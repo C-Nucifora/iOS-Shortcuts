@@ -47,7 +47,13 @@ total_fat: 22
 - `date` (optional) — `now` or a parseable date/time; controls the Health
   sample timestamp. Absent ⇒ now.
 - Any nutrient line Claude omits or leaves blank is skipped.
-- Claude only emits lines it can estimate.
+- **Claude only emits a line for a nutrient when it is genuinely confident in
+  the estimate.** Better to omit a value than to log a guess — a missing
+  nutrient is skipped cleanly, but a fabricated number pollutes Health data.
+  In practice this means Claude reliably fills energy and the macros it can
+  judge from a photo (calories, protein, carbs, fat) and omits most
+  micronutrients unless the food/label clearly supports a value. The
+  "How to use with Claude" README snippet states this rule explicitly.
 
 ### Supported nutrients (full HealthKit dietary set)
 
